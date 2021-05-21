@@ -1,0 +1,82 @@
+.searchInput-wrapper {
+    display: table-cell;
+    padding-left: 2%;
+    vertical-align: middle;
+}
+
+.searchCategory {
+    display: block;
+    float: left;
+    width: 120px;
+    height: 30px;
+    padding: 6px 11px;
+    border-radius: 4px;
+    border: solid 1px #457dd0;
+    background-color: #ffffff;
+    box-sizing: border-box;
+
+    -webkit-appearance: none;  /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+    background: url("/icon/arrow-down-blue.png") no-repeat 95% 50%;  /* 화살표 모양의 이미지 */
+    background-size: 20px;
+
+}
+
+.searchText {
+    display: block;
+    float: left;
+    width: 180px;
+    height: 30px;
+    padding: 6px 0 6px 7px;
+    border-radius: 4px;
+    border: solid 1px #457dd0;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.searchBtn {
+    display: block;
+    float: left;
+    width: 70px;
+    height: 30px;
+    border-radius: 4px;
+    border: solid 1px #457dd0;
+    background-color: #558bdc;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.searchDate {
+    // display: block;
+    display: flex;
+    float: left;
+
+    label {
+        margin: auto 10px auto 0px;
+    }
+
+    input {
+        width: 120px;
+        height: 30px;
+        border-radius: 4px;
+        border: solid 1px #457dd0;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        cursor: pointer;
+    }
+}

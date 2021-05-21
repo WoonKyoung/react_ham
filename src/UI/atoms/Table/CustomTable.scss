@@ -1,0 +1,73 @@
+.mainTable {
+    width: 96%;
+    margin: 0 2%;
+    table-layout: fixed;
+
+    tr, th, td {
+        border: 1px solid #c5c5c5;
+    }
+
+    th, td {
+        padding: 9px 0;
+        text-overflow:ellipsis; 
+        overflow:hidden; 
+        white-space:nowrap
+    }
+}
+.tableHead {
+    background-color: #d8d8d8;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    z-index: 1;
+}
+
+.tableBody {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+
+    tr.row:hover {
+        cursor: pointer;
+        background-color: #edf7ff;
+    }
+
+    tr.clicked {
+        background-color: #edf7ff;
+    }
+}
+
+.pagination-wrappper {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+}
+.sortBtn {
+    border: none;
+    line-height: 24px;
+    padding-right: 24px;
+
+    &.ascending {
+        background: url("/icon/arrow-up-blk.png") no-repeat 100% 50%;
+        background-size: 24px;
+    }
+
+    &.descending {
+        background: url("/icon/arrow-down-blk.png") no-repeat 100% 50%;
+        background-size: 24px;
+    }
+}
+
+.fixedHeader {
+    position: sticky;
+}

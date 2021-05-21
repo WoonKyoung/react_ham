@@ -1,0 +1,456 @@
+@import "reset.css";
+@import "../node_modules/react-datepicker/dist/react-datepicker.css";
+
+
+.m-auto {
+    margin: auto;
+}
+.mt-auto {
+    margin-top: auto;
+}
+.mr-auto {
+    margin-right: auto;
+}
+.mb-auto {
+    margin-bottom: auto;
+}
+.ml-auto {
+    margin-left: auto;
+}
+.pd-auto {
+    padding: auto;
+}
+.pdt-auto {
+    padding-top: auto;
+}
+.pdr-auto {
+    padding-right: auto;
+}
+.pdb-auto {
+    padding-bottom: auto;
+}
+.pdl-auto {
+    padding-left: auto;
+}
+@for $i from 0 through 100 {
+    //margin[px]
+    .m-#{$i} {
+        margin: #{$i}px;
+    }
+    .mt-#{$i} {
+        margin-top: #{$i}px;
+    }
+    .mr-#{$i} {
+        margin-right: #{$i}px;
+    }
+    .mb-#{$i} {
+        margin-bottom: #{$i}px;
+    }
+    .ml-#{$i} {
+        margin-left: #{$i}px;
+    }
+
+    //padding[px]
+    .pd-#{$i} {
+        padding: #{$i}px;
+    }
+    .pdt-#{$i} {
+        padding-top: #{$i}px;
+    }
+    .pdr-#{$i} {
+        padding-right: #{$i}px;
+    }
+    .pdb-#{$i} {
+        padding-bottom: #{$i}px;
+    }
+    .pdl-#{$i} {
+        padding-left: #{$i}px;
+    }
+
+    //margin[%]
+    .m-#{$i}p {
+        margin: percentage($number: $i/100)
+    }
+    .mt-#{$i}p {
+        margin-top: percentage($number: $i/100)
+    }
+    .mr-#{$i}p {
+        margin-right: percentage($number: $i/100)
+    }
+    .mb-#{$i}p {
+        margin-bottom: percentage($number: $i/100)
+    }
+    .ml-#{$i}p {
+        margin-left: percentage($number: $i/100)
+    }
+
+    //padding[%]
+    .pd-#{$i}p {
+        padding: percentage($number: $i/100)
+    }
+    .pdt-#{$i}p {
+        padding-top: percentage($number: $i/100)
+    }
+    .pdr-#{$i}p {
+        padding-right: percentage($number: $i/100)
+    }
+    .pdb-#{$i}p {
+        padding-bottom: percentage($number: $i/100)
+    }
+    .pdl-#{$i}p {
+        padding-left: percentage($number: $i/100)
+    }
+
+    //font-size
+    .fs-#{$i} {
+        font-size: #{$i}px;
+    }
+}
+
+@for $i from 0 through 500 {
+    //width(percent 0.5-250) 0.5%씩 증가
+    .w-#{$i/2} {
+        width: percentage($number: $i/200);
+    }
+    //height(percent 0.5-250) 0.5%씩 증가
+    .h-#{$i/2} {
+        height: percentage($number: $i/200);
+    }
+
+    //width(px 1-500)
+    .w-#{$i}px {
+        width: #{$i}px;
+    }
+    //heigth(px 1-500)
+    .h-#{$i}px {
+        height: #{$i}px;
+    }
+
+    //width(vh)
+    .w-#{$i}vh {
+        width: #{$i}vh;
+    }
+    //height(vh)
+    .h-#{$i}vh {
+        height: #{$i}vh;
+    }
+
+    .t-#{$i}px {
+        top: #{$i}px;
+    }
+    .l-#{$i}px {
+        left: #{$i}px;
+    }
+    .r-#{$i}px {
+        right: #{$i}px;
+    }
+    .b-#{$i}px {
+        bottom: #{$i}px;
+    }
+}
+
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+// *::-webkit-scrollbar {
+//     display: none;
+// }
+
+.position_abs {
+    position: absolute;
+}
+.position_rlt {
+    position: relative;
+}
+
+.flex {
+    display: flex;
+}
+
+.display_table {
+    display: table;
+}
+
+.display_table_cell {
+    display: table-cell;
+}
+
+.floatR {
+    float: right;
+}
+
+.floatL {
+    float: left;
+}
+
+.txtR {
+    text-align: right;
+}
+
+.j-c-c {
+    justify-content: center;
+}
+
+.j-c-r {
+    justify-content: flex-end;
+}
+
+.v-middle {
+    vertical-align: middle;
+}
+
+.fontC-white {
+    color: #ffffff;
+}
+
+.fontC-555 {
+    color: #555555;
+}
+
+.bgC-ffffff {
+    background-color: #ffffff !important;
+}
+
+.bgC-efefef {
+    background-color: #efefef !important;
+}
+
+.bgC-eb878c {
+    background-color: #eb878c;
+}
+
+.bgC-c5c5c5 {
+    background-color: #c5c5c5;
+}
+
+.borderC-eb878c {
+    border: solid 1px #eb878c;
+}
+
+.fontW-500 {
+    font-weight: 500;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.overflowYscroll {
+    overflow-y: scroll;
+}
+
+.overflowYscroll::-webkit-scrollbar {
+    display: none;
+}
+
+.overFlowYscrollView {
+    overflow-y: auto;
+}
+
+.overFlowYscrollView ::-webkit-scrollbar {
+    display: inline !important;
+}
+
+.defaultBtn {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.addBtn {
+    @extend .defaultBtn;
+    border: solid 1px #457dd0;
+    background-color: #558bdc;
+}
+
+.removeBtn {
+    @extend .defaultBtn;
+    border: solid 1px #b6b6b6;
+    background-color: #c6c6c6;
+}
+
+.cancelBtn {
+    @extend .defaultBtn;
+    border: solid 1px #e37075;
+    background-color: #eb878c;
+}
+
+.downloadBtn {
+    @extend .defaultBtn;
+    border: solid 1px #7bf385;
+    background-color: #78e281;
+}
+
+.addRowBtn {
+    background: url('/icon/btn_plus.png') no-repeat 0% 50%;
+    border: none;
+    cursor: pointer;
+    background-size: 25px;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+
+.removeRowBtn {
+    background: url('/icon/btn_minus.png') no-repeat 0% 50%;
+    border: none;
+    cursor: pointer;
+    background-size: 25px;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+
+.addMenuBtn {
+    background: url('/icon/btn_plus.png') no-repeat 0% 50%;
+    border: none;
+    cursor: pointer;
+    background-size: 16px;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.removeMenuBtn {
+    background: url('/icon/btn_minus.png') no-repeat 0% 50%;
+    border: none;
+    cursor: pointer;
+    background-size: 16px;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.duplicateBtn {
+    font-size: 11px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 3px;
+    border: solid 1px #656565;
+    background-color: #656565;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.totalCnt {
+    margin: 20px 0 20px 2%;
+    width: 52px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    display: inline-block;
+}
+
+.footer_btn {
+    display: flex;
+    justify-content: center;
+}
+
+.label_title {
+    width: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #444444;
+    line-height: 26px;
+}
+
+.label_summary {
+    width: 50%;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #444444;
+    line-height: 26px;
+}
+
+.textEditorWrapper {
+    width: 100%;
+    height: 100%;
+    border: solid 1px #d8d8d8;
+    background-color: #ffffff;
+
+    .textEditorTitle {
+        margin: 8px 0 9px 18px;
+        font-size: 14px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #182233;
+    }
+
+    .textEditorLayer {
+        margin: 0 18px 6px 18px;
+        height: 100%;
+    }
+}
+
+.contentsWrapperDiv {
+    width: 95%;
+    height: 100%;
+    margin: 0 2%;
+    background-color: #ffffff;
+
+    .contentsTitleDiv {
+        padding: 9px;
+        background-color: #d8d8d8;
+        border: solid 1px #c5c5c5;
+        border-bottom: none;
+        font-size: 12px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: #000000;
+    }
+
+    .contentsDiv {
+        padding: 9px;
+        border: solid 1px #c5c5c5;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: #000000;
+    }
+
+}

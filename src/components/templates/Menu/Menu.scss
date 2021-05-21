@@ -1,0 +1,154 @@
+.hidden {
+    display: none;
+    opacity: 0;
+}
+.appear {
+    animation: fade-in 1s;
+    animation-fill-mode: forwards;
+    display: flex;
+}
+
+.disappear {
+    animation: fade-out 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.menu_bg {
+    background-color: #2a3344;
+    overflow-y: auto;
+    float: left;
+    height: calc(100vh - 60px);
+}
+
+.menu_bg::-webkit-scrollbar {
+    display: none;
+}
+
+.left_menu_show_hide_btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    box-sizing: content-box;
+    padding: 0px;
+    background-color: transparent;
+}
+
+.menu_list4big {
+    display: flex;
+    margin: 1px 0;
+    background-color: #3f4756;
+    width: 210px;
+    height: 60px;
+
+    p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        margin: auto 15px;
+    }
+}
+
+.menu_list4middle {
+    display: flex;
+    margin: 1px 0;
+    background-color: #3f4756;
+    width: 210px;
+    height: 40px;
+
+    p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    &.listOpen {
+        border-left: 7px solid #558bdc;
+        box-sizing: border-box;
+    }
+}
+
+.menu_list4small {
+    display: flex;
+    margin: 1px 0;
+    background-color: #636c7f;
+    width: 210px;
+    height: 40px;
+
+    p {
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 7px;
+    }
+}
+.l-210px{
+    transition: all ease 0.8s 0s;
+}
+
+.menu_list4page {
+    display: flex;
+    margin: 1px 0;
+    background-color: #636c7f;
+    width: 210px;
+    height: 40px;
+
+    input[type=radio] {
+        display: none;
+    }
+
+    label {
+        margin-left: 63px;
+    }
+
+    input[type=radio] + label {
+        background: url('/icon/listNaviOff.png') no-repeat 0% 50%;
+        background-size: 12px;
+    }
+
+    input[type=radio]:checked + label {
+        background: url('/icon/listNaviOn.png') no-repeat  0% 50%;
+        background-size: 12px;
+    }
+
+    input[type=radio] + label span {
+        line-height: 40px;
+        padding-left: 24px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #ffffff;
+    }
+
+
+
+    // p {
+    //     font-size: 12px;
+    //     font-weight: 500;
+    //     color: #ffffff;
+    //     margin-top: auto;
+    //     margin-bottom: auto;
+    //     margin-left: 12px;
+    // }
+
+}

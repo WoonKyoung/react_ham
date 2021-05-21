@@ -1,0 +1,35 @@
+.customCheckbox {
+    display: flex;
+    line-height: 16px;
+
+    input[type=checkbox] {
+        display: none;
+    }
+    
+    input[type=checkbox] + label {
+        background: url('/icon/uncheckedbox.png') no-repeat 0% 50%;
+        background-size: 16px;
+    }
+    
+    input[type=checkbox]:checked + label {
+        background: url('/icon/checkedbox.png') no-repeat  0% 50%;
+        background-size: 16px;
+    }
+
+    // .uncheckedbox {
+    //     background: url('/icon/uncheckedbox.png') no-repeat 0% 50%;
+    //     background-size: 16px;
+    // }
+
+    // .checkedbox {
+    //     background: url('/icon/checkedbox.png') no-repeat  0% 50%;
+    //     background-size: 16px;
+    // }
+    
+    input[type=checkbox] + label p {
+        padding-left: 21px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #555555;
+    }
+}
