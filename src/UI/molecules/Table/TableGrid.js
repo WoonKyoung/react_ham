@@ -27,7 +27,7 @@ export default function TableGrid(props){
         const authGruopCode = store.user.menuGroup;
         console.log(authGruopCode);
         console.log(store.user);
-        console.log('storeuser', store.user["username"]);
+        console.log('storeuser', store.user['username']);
 
     };
     return(

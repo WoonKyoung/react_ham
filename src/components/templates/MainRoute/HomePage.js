@@ -21,6 +21,8 @@ export const HomePage = () => {
     const isAuthenticated = store.isAuthorized;
     const userInfo = JSON.parse(sessionStorage.getItem('user'));
     console.log(isAuthenticated, userInfo);
+    const link = document.location.href;
+    console.log(link);
 
     return (
         <>
@@ -49,7 +51,8 @@ export const HomePage = () => {
                     </PageTemplate>
                 )
                 : (
-                    <Redirect to={"/login"}/>
+                    // 돌아 오지 못함
+                    <Redirect to={{ pathname: "/login", state: { from : link}}}/>
                 )
             }
         </>
