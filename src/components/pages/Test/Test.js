@@ -10,46 +10,55 @@ const columnList = [
         headerName: 'noticeId',
         width: 150,
         hide: true,
+        editable: true
     },
     {
         field: 'classificationName',
         headerName: 'classificationKOR',
         width: 150,
+        editable: true
     },
     {
         field: 'title',
         headerName: 'title',
         width: 150,
+        editable: true
     },
     {
         field: 'viewDate',
         headerName: 'viewDate',
         width: 150,
+        editable: true
     },
     {
         field: 'mainNotice',
         headerName: 'mainNotice',
         width: 150,
+        editable: true
     },
     {
         field: 'dongHo',
         headerName: 'dongHo',
         width: 150,
+        editable: true
     },
     {
         field: 'siteName',
         headerName: 'site.name',
         width: 150,
+        editable: true
     },
     {
         field: 'customerName',
         headerName: 'customer.name',
         width: 150,
+        editable: true
     },
     {
         field: 'publicYn',
         headerName: 'publicYn',
         width: 150,
+        editable: true
     },
 ];
 
@@ -104,7 +113,7 @@ export const Test = () => {
 
     return (
         <>
-            <TableGrid rows={contentData} columns={columnList} checkboxSelection={true} />
+            <TableGrid rows={contentData} columns={columnList} checkboxSelection={true} setContentData={setContentData}/>
         </>
     );
 }
