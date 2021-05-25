@@ -9,6 +9,7 @@ import About from "../../pages/About/About";
 import BookList from "../../pages/Book/BookList";
 import {Community} from "../../pages/Community/Community";
 import {Test} from "../../pages/Test/Test";
+import {NotFound} from "../../pages/NotFound/NotFound";
 
 export const HomePage = () => {
 
@@ -42,9 +43,9 @@ export const HomePage = () => {
                             <Route path={"/community"} children={<Community userInfo={userInfo}/>}/>
                             <Route path={"/book"} children={<BookList userInfo={userInfo}/>}/>
                             <Route path={"/test"} children={<Test userInfo={userInfo}/>}/>
-                            <Route path={"/not-found2"} exact component={BookList}/>
+                            <Route path={"/not-found2"} exact component={NotFound}/>
                             <Route path={"*"}>
-                                <Redirect to={"/not-found"} />
+                                <Redirect to={"/not-found2"} />
                             </Route>
 
                         </Switch>

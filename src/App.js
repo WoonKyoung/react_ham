@@ -5,9 +5,8 @@ import {HomePage} from "./components/templates/MainRoute/HomePage";
 import SignIn from "./components/pages/User/SignIn";
 import LoginCheck from "./components/pages/User/LoginCheck";
 import "./App.scss";
-import {Test} from "./components/pages/Test/Test";
-import BookList from "./components/pages/Book/BookList";
 import React from "react";
+import {NotFound} from "./components/pages/NotFound/NotFound";
 
 function App() {
     return (
@@ -17,7 +16,7 @@ function App() {
                     <Switch>
                         <Route path={"/login"} exact component={SignIn}/>
                         <Route path="/login/check" exact component={LoginCheck}/>
-                        <Route path={"/not-found"} exact component={BookList}/>
+                        <Route path={"/not-found"} exact component={NotFound}/>
                         <Route path={"/"}>
                             <HomePage/>
                         </Route>
