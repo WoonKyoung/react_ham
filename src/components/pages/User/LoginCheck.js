@@ -70,12 +70,11 @@ async function checkUser(dispatch) {
     try {
         const user = await Auth.currentAuthenticatedUser()
         await Net.getMe((res) => {
-            console.log("/me", res);
+            //console.log("/me", res);
             store.user = (JSON.stringify(res.data));
             sessionStorage.setItem('user', JSON.stringify(res.data));
             sessionStorage.setItem('isAuthorized', true);
 
-            console.log('user: ', user);
             dispatch({type: 'setUser', user})
         })
 

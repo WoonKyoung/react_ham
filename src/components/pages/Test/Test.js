@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Table from "../../../UI/organisms/Table";
 import Net from "../../../actions/net";
+import store from 'stores/store';
 import {DataGrid} from "@material-ui/data-grid";
 import TableGrid from "../../../UI/molecules/Table/TableGrid";
 
@@ -14,50 +15,50 @@ const columnList = [
     },
     {
         field: 'classificationName',
-        headerName: 'classificationKOR',
-        width: 150,
+        headerName: '구분',
+        width: 110,
         editable: true
     },
     {
         field: 'title',
-        headerName: 'title',
-        width: 150,
+        headerName: '제목',
+        width: 180,
         editable: true
     },
     {
         field: 'viewDate',
-        headerName: 'viewDate',
-        width: 150,
+        headerName: '공개기간',
+        width: 180,
         editable: true
     },
     {
         field: 'mainNotice',
-        headerName: 'mainNotice',
-        width: 150,
+        headerName: '중요여부',
+        width: 110,
         editable: true
     },
     {
         field: 'dongHo',
-        headerName: 'dongHo',
-        width: 150,
+        headerName: '장소',
+        width: 110,
         editable: true
     },
     {
         field: 'siteName',
-        headerName: 'site.name',
-        width: 150,
+        headerName: '현장명',
+        width: 120,
         editable: true
     },
     {
         field: 'customerName',
-        headerName: 'customer.name',
-        width: 150,
+        headerName: '고객사',
+        width: 130,
         editable: true
     },
     {
         field: 'publicYn',
-        headerName: 'publicYn',
-        width: 150,
+        headerName: '사용여부',
+        width: 110,
         editable: true
     },
 ];
@@ -70,6 +71,7 @@ export const Test = () => {
 
     // table Data : Get
     useEffect(() => {
+        store.openedPage = '공지사항 목록';
         loadData();
     }, []);
 

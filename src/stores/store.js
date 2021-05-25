@@ -21,6 +21,7 @@ export const store = observable({
     email: null,
     phoneNumber: null,
     status: null,
+    menuGroup: null
   },
 
   isAuthorized: false,

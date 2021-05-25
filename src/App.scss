@@ -174,7 +174,7 @@
 }
 
 .display_table_cell {
-    display: table-cell;
+
 }
 
 .floatR {
@@ -274,24 +274,28 @@
     @extend .defaultBtn;
     border: solid 1px #457dd0;
     background-color: #558bdc;
+    margin : 5px;
 }
 
 .removeBtn {
     @extend .defaultBtn;
     border: solid 1px #b6b6b6;
     background-color: #c6c6c6;
+    margin : 5px;
 }
 
 .cancelBtn {
     @extend .defaultBtn;
     border: solid 1px #e37075;
     background-color: #eb878c;
+    margin : 5px;
 }
 
 .downloadBtn {
     @extend .defaultBtn;
     border: solid 1px #7bf385;
     background-color: #78e281;
+    margin : 5px;
 }
 
 .addRowBtn {
