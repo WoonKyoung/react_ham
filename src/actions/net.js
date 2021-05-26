@@ -167,12 +167,12 @@ export default {
             .get(`/logout`)
             .then((response) => {
                 if (response.status === 200) {
-                    Object.keys(store.auth).map(key => {
-                        store.user[key] = null;
-                    });
-                    Object.keys(store.user).map(key => {
-                        store.user[key] = null;
-                    });
+                    // Object.keys(store.auth).map(key => {
+                    //     store.user[key] = null;
+                    // });
+                    // Object.keys(store.user).map(key => {
+                    //     store.user[key] = null;
+                    // });
                     store.isAuthorized = false;
                     const S = new DeviceStorage().localStorage();
                     S.delete('token');

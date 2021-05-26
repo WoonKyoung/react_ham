@@ -10,9 +10,6 @@ const initialUserState = {user: null, loading: true}
 
 function SignIn() {
     const [userState, dispatch] = useReducer(reducer, initialUserState);
-    const [formState, updateFormState] = useState('base');
-
-    const isAuthenticated = store.isAuthorized || sessionStorage.getItem('isAuthorized');
 
     useEffect(async () => {
         await Hub.listen('auth', (data) => {

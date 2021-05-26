@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {store} from '../../../stores/store';
 import {Redirect, Route, Switch} from "react-router-dom";
 import {Footer} from "../Footer/Footer";
@@ -10,6 +10,9 @@ import BookList from "../../pages/Book/BookList";
 import {Community} from "../../pages/Community/Community";
 import {Test} from "../../pages/Test/Test";
 import {NotFound} from "../../pages/NotFound/NotFound";
+import DeviceStorage from 'react-device-storage';
+import {Auth} from "aws-amplify";
+import Net from "../../../actions/net";
 
 export const HomePage = () => {
 
@@ -19,11 +22,27 @@ export const HomePage = () => {
         setOpen(e);
     };
 
-    const isAuthenticated = store.isAuthorized;
+    const isAuthenticated = store.isAuthorized || sessionStorage.getItem('isAuthorized');
     const userInfo = JSON.parse(sessionStorage.getItem('user'));
     console.log(isAuthenticated, userInfo);
-    const link = document.location.href;
-    console.log(link);
+    const S = new DeviceStorage().localStorage();
+    const token = S.read('token');
+
+    useEffect(()=> {
+        if(token){
+            getUser();
+        }
+    },[]);
+
+    const getUser = async ()=> {
+        await Net.getMe((res) => {
+            console.log("/me", res);
+            store.user = res.data;
+            store.isAuthorized = true;
+            sessionStorage.setItem('user', JSON.stringify(res.data));
+            sessionStorage.setItem('isAuthorized', true);
+        })
+    }
 
     return (
         <>
@@ -52,8 +71,7 @@ export const HomePage = () => {
                     </PageTemplate>
                 )
                 : (
-                    // 돌아 오지 못함
-                    <Redirect to={{ pathname: "/login", state: { from : link}}}/>
+                    <Redirect to={{ pathname: "/login"}}/>
                 )
             }
         </>

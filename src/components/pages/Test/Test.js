@@ -72,9 +72,31 @@ export const Test = () => {
     // table Data : Get
     useEffect(() => {
         store.openedPage = '공지사항 목록';
+        getPageAuthInfo();
         loadData();
     }, []);
 
+    // 해당 페이지의 유저 권한 Get
+    const getPageAuthInfo = () => {
+        const userInfo = JSON.parse(sessionStorage.getItem('user'));
+        const authGroupCode = userInfo.authList[0];
+        const menuId = sessionStorage.getItem('menuId');
+
+        Net.getAuthGroupMenuList(menuId, (response) => {
+            if(response.status === 200) {
+                response.data.map(item => {
+                    if(item.authGroup === authGroupCode && item.authGroupMenu) {
+                        setProgramAuth({
+                            searchAuth: Boolean(item.authGroupMenu.searchAuth),
+                            saveAuth: Boolean(item.authGroupMenu.saveAuth),
+                            excelAuth: Boolean(item.authGroupMenu.excelAuth),
+                            deleteAuth: Boolean(item.authGroupMenu.deleteAuth),
+                        });
+                    }
+                });
+            }
+        });
+    }
 
     const loadData = async () => {
         await Net.getNoticeList({}, (response) => {

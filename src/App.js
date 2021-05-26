@@ -5,10 +5,17 @@ import {HomePage} from "./components/templates/MainRoute/HomePage";
 import SignIn from "./components/pages/User/SignIn";
 import LoginCheck from "./components/pages/User/LoginCheck";
 import "./App.scss";
-import React from "react";
+import React, {useEffect} from "react";
 import {NotFound} from "./components/pages/NotFound/NotFound";
+import {Auth} from "aws-amplify";
+import Net from "./actions/net";
+import {store} from "./stores/store";
+import DeviceStorage from "react-device-storage";
 
 function App() {
+
+
+
     return (
         <CookiesProvider>
             <BrowserRouter>
