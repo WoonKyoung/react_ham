@@ -4,14 +4,14 @@ import Net from "../../../actions/net";
 import store from 'stores/store';
 import {DataGrid} from "@material-ui/data-grid";
 import TableGrid from "../../../UI/molecules/Table/TableGrid";
+import Feed from "../../../UI/molecules/Feed/Feed";
 
 const columnList = [
     {
         field: 'id',
-        headerName: 'noticeId',
-        width: 150,
+        headerName: 'ID',
+        width: 30,
         hide: true,
-        editable: true
     },
     {
         field: 'classificationName',
@@ -64,28 +64,28 @@ const columnList = [
 ];
 
 export const Test = () => {
-
     const [contentData, setContentData] = useState([]);
     const [programAuth, setProgramAuth] = useState({});
-
+    const [resetState, setResetState] = useState(false);
+    const [detailContent, setDetailContent] = useState({});
 
     // table Data : Get
     useEffect(() => {
         store.openedPage = '공지사항 목록';
         getPageAuthInfo();
         loadData();
-    }, []);
+    }, [resetState]);
 
     // 해당 페이지의 유저 권한 Get
-    const getPageAuthInfo = () => {
+    const getPageAuthInfo = async () => {
         const userInfo = JSON.parse(sessionStorage.getItem('user'));
         const authGroupCode = userInfo.authList[0];
         const menuId = sessionStorage.getItem('menuId');
 
-        Net.getAuthGroupMenuList(menuId, (response) => {
-            if(response.status === 200) {
+        await Net.getAuthGroupMenuList(menuId, (response) => {
+            if (response.status === 200) {
                 response.data.map(item => {
-                    if(item.authGroup === authGroupCode && item.authGroupMenu) {
+                    if (item.authGroup === authGroupCode && item.authGroupMenu) {
                         setProgramAuth({
                             searchAuth: Boolean(item.authGroupMenu.searchAuth),
                             saveAuth: Boolean(item.authGroupMenu.saveAuth),
@@ -136,8 +136,21 @@ export const Test = () => {
     }
 
     return (
-        <>
-            <TableGrid rows={contentData} columns={columnList} checkboxSelection={true} setContentData={setContentData}/>
-        </>
+        <div className="flex" >
+            <TableGrid
+                rows={contentData}
+                columns={columnList}
+                checkboxSelection={true}
+                setContentData={setContentData}
+                programAuth={programAuth}
+                setResetState={setResetState}
+                resetState={resetState}
+                setDetailContent={setDetailContent}
+                detailContent={detailContent}
+            />
+            <Feed detailContent={detailContent}/>
+
+
+        </div>
     );
 }

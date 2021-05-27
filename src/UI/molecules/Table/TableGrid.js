@@ -1,7 +1,13 @@
 import * as React from 'react';
 
-import {DataGrid} from "@material-ui/data-grid";
-import {useEffect, useState} from "react";
+import {
+    DataGrid,
+    GridColumnsToolbarButton, GridDensitySelector,
+    GridFilterToolbarButton, GridTableRowsIcon,
+    GridToolbar,
+    GridToolbarContainer, GridToolbarExport
+} from "@material-ui/data-grid";
+import {useCallback, useEffect, useState} from "react";
 import {useHistory} from 'react-router-dom'
 import store from 'stores/store';
 import Net from 'actions/net';
@@ -14,7 +20,7 @@ const MatEdit = ({index, editColor}) => {
     const handleEditClick = () => {
         // some action
 
-        alert(index);
+        alert("수정 중인 인덱스");
     };
 
     return (
@@ -33,42 +39,43 @@ const MatEdit = ({index, editColor}) => {
     );
 };
 
-const MatDelete = ({index}) => {
-    const handleDeleteClick = () => {
-
-        alert(index);
-    };
-
-    return (
-        <FormControlLabel
-            control={
-                <IconButton
-                    color="secondary"
-                    aria-label="delete"
-                    onClick={handleDeleteClick}
-                >
-                    <DeleteIcon/>
-                </IconButton>
-            }
-        />
+const CustomToolbar = () => {
+    return(
+        <GridToolbarContainer>
+            <GridFilterToolbarButton />
+            <GridToolbarExport />
+        </GridToolbarContainer>
     );
-};
+}
+//Email Validation
+function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
 
 const TableGrid = (props) => {
-    const [programAuth, setProgramAuth] = useState({});
     const [editRowsModel, setEditRowsModel] = useState({});
     const [editColor, setEditColor] = useState(new Map());
     const [selectionModel, setSelectionModel] = React.useState({});
+    const [modalState, setModalState] = useState({
+        open: false,
+        data: [],
+        form: [],
+    });
 
     const history = useHistory();
 
+
+    // 그리드 인라인 수정시 콜백 함수
     const handleEditCellChange = React.useCallback(
         ({id, field, props}) => {
             if (field === 'email') {
                 const data = props; // Fix eslint value is missing in prop-types for JS files
                 const newState = {};
+                const isValid = validateEmail(data.value);
                 newState[id] = {
                     ...editRowsModel[id],
+                    email: { ...props, error: !isValid },
                 };
                 setEditRowsModel((state) => ({...state, ...newState}));
             }
@@ -78,11 +85,12 @@ const TableGrid = (props) => {
     );
 
 
+    // 마지막 Column 에 삭제 기능 및 아이콘 추가
     const columns = [
         ...props.columns,
         {
             field: "actions",
-            headerName: "Actions",
+            headerName: "수정 상태",
             sortable: false,
             width: 140,
             disableClickEventBubbling: true,
@@ -94,7 +102,6 @@ const TableGrid = (props) => {
                             style={{cursor: "pointer"}}
                         >
                             <MatEdit index={params.row.id} editColor={editColor}/>
-                            <MatDelete index={params.row.id}/>
                         </div>
                     </>
                 );
@@ -103,25 +110,44 @@ const TableGrid = (props) => {
     ];
 
     const addList = () => {
-        history.push('/community/notice/regist');
+        onClickModalOpen({});
+    }
+    const onClickModalOpen = (form) => {
+        setModalState({
+            ...modalState,
+            open: !modalState.open,
+            form: form
+        });
+    }
+    const sendData = (e) => {
+        setModalState({
+            ...modalState,
+            data: e,
+        })
     }
 
     const removeList = () => {
         const result = window.confirm('삭제하시겠습니까?');
         const removeList = [];
         selectionModel.map((id) => {
-            const node = document.querySelector(`#${id}`);
-            const nodeTr = node.closest('tr');
-            const noticeId = nodeTr.querySelector('td[name=noticeId]').textContent;
+            const noticeId = id.noticeId;
             removeList.push({noticeId: noticeId});
         });
         if (result) {
             Net.removeNotice(removeList, (response) => {
                 if (response) {
-                    // getClassificationList((response) => loadData(response.data));
+                    cancelList();
                 }
             });
         }
+    }
+
+    const cancelList = (prev) =>{
+        props.setResetState(!props.resetState);
+        setEditColor(new Map());
+        setEditRowsModel({});
+        setSelectionModel({});
+
     }
 
     // Object가 null인지 확인하는 함수
@@ -131,62 +157,48 @@ const TableGrid = (props) => {
 
 
     useEffect(() => {
-        getPageAuthInfo();
 
     }, []);
-
-    // 해당 페이지의 유저 권한 Get
-    const getPageAuthInfo = () => {
-        const userInfo = JSON.parse(sessionStorage.getItem('user'));
-        const authGroupCode = userInfo.authList[0];
-        const menuId = sessionStorage.getItem('menuId');
-
-        Net.getAuthGroupMenuList(menuId, (response) => {
-            if (response.status === 200) {
-                //    response.data.map(item => {
-                //if(item.authGroup === authGroupCode && item.authGroupMenu) {
-                setProgramAuth({
-                    searchAuth: true,
-                    saveAuth: true,
-                    excelAuth: true,
-                    deleteAuth: true,
-                });
-                console.log(programAuth);
-
-                //    }
-                //     });
-            }
-        });
-        console.log(programAuth);
-    };
 
     return (
         <div className="w-100 h-100">
             <div className="w-100 h-7 display_table">
                 {
-                    programAuth.saveAuth &&
-                    <div className="display_table_cell v-middle">
+                    props.programAuth.saveAuth &&
                         <button
                             className="addBtn w-90px h-30px floatR"
                             onClick={addList}
                         >등록
                         </button>
-                    </div>
                 }
                 {
-                    programAuth.deleteAuth && !isEmptyObject(selectionModel) &&
+                    props.programAuth.deleteAuth && !isEmptyObject(selectionModel) &&
                     <button
                         className="removeBtn w-90px h-30px floatR"
                         onClick={removeList}
                     >삭제</button>
                 }
                 {
-
+                    props.programAuth.saveAuth && (editColor.size > 0)&&
+                    <button
+                        className="cancelBtn w-90px h-30px floatR"
+                        onClick={cancelList}
+                    >
+                        취소
+                    </button>
+                }
+                {
+                    props.programAuth.saveAuth && (editColor.size > 0) &&
+                    <button
+                        className="downloadBtn w-90px h-30px floatR"
+                    >
+                        저장
+                    </button>
                 }
 
 
             </div>
-            <div style={{height: 400, width: "100%"}}>
+            <div style={{ height : 500, width: "100%"}}>
                 <DataGrid rows={props.rows} columns={columns} rowHeight={25} checkboxSelection={props.checkboxSelection}
                           disableSelectionOnClick
                           editRowsModel={editRowsModel}
@@ -203,9 +215,21 @@ const TableGrid = (props) => {
                               console.log("selected rowData:", selectedRowData);
                           }}
                           isCellEditable={(params) => {
-
-                            }
-                          }
+                              if( params.isEditable !== props.programAuth.saveAuth ) return true;
+                          }}
+                          onRowClick={(params)=>{
+                              const selectedID = params.row.noticeId;
+                              Net.getNoticeOne(selectedID, (response) => {
+                                  if(response.status === 200) {
+                                      props.setDetailContent(response.data);
+                                  }
+                              });
+                          }}
+                          components={{
+                              Toolbar:CustomToolbar,
+                          }}
+                          disableColumnMenu
+                          density
                 />
             </div>
 

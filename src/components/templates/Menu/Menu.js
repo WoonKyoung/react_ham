@@ -122,13 +122,13 @@ export const Menu = (props) => {
                 }]
         },
         {
-            "menuId": "4",
-            "menuGroup": "USER",
+            "menuId": "6013d582180a3a225433604a",
+            "menuGroup": "ADMIN",
             "menuName": "테이블 테스트",
             "parentId": "0",
             "level": 0,
             "sort": 1,
-            "programCode": "string",
+            "programCode": "5ff289ba199dcc12d4f5ba52",
             "program": {
                 "code": "1",
                 "name": "테이블 테스트",
@@ -140,6 +140,24 @@ export const Menu = (props) => {
                 "deleteAuth": true,
                 "remark": "string"
             },
+            "authGroupMenus": [
+                {
+                    "id": "6013d81e180a3a2254336071",
+                    "authGroup": "MEMBER",
+                    "menuId": "6013d582180a3a225433604a",
+                    "searchAuth": true,
+                    "saveAuth": true,
+                    "deleteAuth": true
+                },
+                {
+                    "id": "6013d81e180a3a2254336072",
+                    "authGroup": "MANAGER",
+                    "menuId": "6013d582180a3a225433604a",
+                    "searchAuth": true,
+                    "saveAuth": true,
+                    "deleteAuth": true
+                }
+            ]
         },
 
     ];
